@@ -14,15 +14,9 @@ itsdangerous==2.2.0
 Jinja2==3.1.6
 Mako==1.4.1
 MarkupSafe==3.0.3
-PyMySQL==1.2.0
+psycopg[binary]
 SQLAlchemy==2.0.52
 typing_extensions==4.16.0
 Werkzeug==3.1.8
 WTForms==3.2.2
-pandas
-plotly
-matplotlib
-google-genai
 python-dotenv
-flask-login
-datetime

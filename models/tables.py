@@ -24,7 +24,7 @@ class Caixa(db.Model):
     
     modalidade = db.Column(db.String(20), nullable=False)
 
-    valor = db.Column(db.Float, nullable=False)
+    valor = db.Column(db.Numeric(10, 2), nullable=False)
 
     descricao = db.Column(db.String(255))
 
