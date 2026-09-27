@@ -1,0 +1,619 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Caixa por Modalidade | Dragões</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg">
+
+    <div class="container">
+
+        <a class="navbar-brand text-white" href="/">
+            <i class="bi bi-dribbble me-2"></i>
+            CAIXA DRAGÕES
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto gap-lg-3">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">
+                        Início
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/movimentacoes">
+                        Movimentações
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/caixa/modalidade">
+                        Modalidades
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Relatórios
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- CONTEÚDO -->
+
+<main class="container">
+
+    <!-- CABEÇALHO -->
+
+    <section class="welcome">
+
+        <h1>Caixa por modalidade</h1>
+
+        <p>
+            Acompanhe o saldo, as entradas e as saídas de cada modalidade.
+        </p>
+
+    </section>
+
+
+    <!-- MASCULINO -->
+
+    <section class="modalidade-section">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+                <div class="modalidade-title mb-1">
+                    Masculino
+                </div>
+
+                <div class="small text-secondary">
+                    Resumo financeiro da modalidade
+                </div>
+            </div>
+
+            <i class="bi bi-person fs-3 text-secondary"></i>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Saldo atual
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ saldo_masculino|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-balance">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Entradas
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ entrada_masculino|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-entry">
+                            <i class="bi bi-arrow-down-left"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Saídas
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ saida_masculino|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-exit">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEMININO -->
+
+    <section class="modalidade-section">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <div class="modalidade-title mb-1">
+                    Feminino
+                </div>
+
+                <div class="small text-secondary">
+                    Resumo financeiro da modalidade
+                </div>
+
+            </div>
+
+            <i class="bi bi-person fs-3 text-secondary"></i>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Saldo atual
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ saldo_feminino|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-balance">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Entradas
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ entrada_feminino|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-entry">
+                            <i class="bi bi-arrow-down-left"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Saídas
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ saida_feminino|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-exit">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MISTO -->
+
+    <section class="modalidade-section">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <div class="modalidade-title mb-1">
+                    Misto
+                </div>
+
+                <div class="small text-secondary">
+                    Resumo financeiro da modalidade
+                </div>
+
+            </div>
+
+            <i class="bi bi-people fs-3 text-secondary"></i>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Saldo atual
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ saldo_misto|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-balance">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Entradas
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ entrada_misto|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-entry">
+                            <i class="bi bi-arrow-down-left"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="finance-card h-100">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <div class="card-title">
+                                Saídas
+                            </div>
+
+                            <div class="card-value">
+                                R$ {{ saida_misto|moeda }}
+                            </div>
+
+                        </div>
+
+                        <div class="icon-box icon-exit">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AÇÕES RÁPIDAS -->
+
+    <section class="section-card mb-4">
+
+        <div class="section-title mb-1">
+            Ações rápidas
+        </div>
+
+        <div class="small text-secondary mb-4">
+            Acesse rapidamente as principais funções do sistema.
+        </div>
+
+
+        <div class="row g-3">
+
+            <div class="col-lg-4">
+
+                <button
+                    type="button"
+                    class="quick-action w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalCaixa"
+                >
+
+                    <div class="quick-icon">
+                        <i class="bi bi-plus-lg"></i>
+                    </div>
+
+                    <div class="text-start">
+
+                        <strong>Nova entrada</strong>
+
+                        <div class="small text-secondary">
+                            Registrar dinheiro recebido
+                        </div>
+
+                    </div>
+
+                </button>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <button
+                    type="button"
+                    class="quick-action w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalCaixa"
+                >
+
+                    <div class="quick-icon">
+                        <i class="bi bi-dash-lg"></i>
+                    </div>
+
+                    <div class="text-start">
+
+                        <strong>Nova saída</strong>
+
+                        <div class="small text-secondary">
+                            Registrar uma despesa
+                        </div>
+
+                    </div>
+
+                </button>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <a
+                    href="/movimentacoes"
+                    class="quick-action w-100"
+                >
+
+                    <div class="quick-icon">
+                        <i class="bi bi-list-ul"></i>
+                    </div>
+
+                    <div class="text-start">
+
+                        <strong>Movimentações</strong>
+
+                        <div class="small text-secondary">
+                            Ver todas as movimentações
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <i class="bi bi-dribbble"></i>
+                    CAIXA DRAGÕES
+
+                </div>
+
+                <p>
+                    Sistema de controle financeiro do time Dragões do Carimba.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="/">
+                    Início
+                </a>
+
+                <a href="/movimentacoes">
+                    Movimentações
+                </a>
+
+                <a href="/caixa/modalidade">
+                    Modalidades
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Vernix
+            </span>
+
+            <span>
+                Controle financeiro
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>

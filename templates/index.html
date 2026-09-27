@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Caixa Dragões</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+
+        <a class="navbar-brand text-white" href="/">
+            <i class="bi bi-dribbble me-2"></i>CAIXA DRAGÕES
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ms-auto gap-lg-3">
+                <li><a class="nav-link active" href="/">Início</a></li>
+                <li><a class="nav-link" href="/movimentacoes">Movimentações</a></li>
+                <li><a class="nav-link" href="/caixa/modalidade">Modalidades</a></li>
+                <li><a class="nav-link" href="#">Relatórios</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>Olá, {{ current_user.nome }} 👋</h1>
+        <p>Confira a situação financeira do time.</p>
+    </section>
+
+
+    <section class="row g-4 mb-4">
+
+        <div class="col-lg-6">
+            <div class="finance-card h-100">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="card-title">Saldo consolidado</div>
+                        <div class="card-value">R$ {{ saldo|moeda }}</div>
+                        <small class="text-secondary">Saldo total disponível</small>
+                    </div>
+
+                    <div class="icon-box icon-balance">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="finance-card h-100">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="card-title">Entradas</div>
+                        <div class="card-value entry">
+                            R$ {{ total_entradas|moeda }}
+                        </div>
+                        <small class="text-secondary">Total recebido</small>
+                    </div>
+
+                    <div class="icon-box icon-entry">
+                        <i class="bi bi-arrow-down-left"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="finance-card h-100">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="card-title">Saídas</div>
+                        <div class="card-value exit">
+                            R$ {{ total_saidas|moeda }}
+                        </div>
+                        <small class="text-secondary">Total gasto</small>
+                    </div>
+
+                    <div class="icon-box icon-exit">
+                        <i class="bi bi-arrow-up-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="section-card mb-4">
+
+        <div class="section-title mb-1">Ações rápidas</div>
+
+        <div class="small text-secondary mb-4">
+            Registre ou consulte movimentações do caixa.
+        </div>
+
+        <div class="row g-3">
+
+            <div class="col-lg-4">
+                <button
+                    type="button"
+                    class="quick-action w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalCaixa">
+
+                    <div class="quick-icon">
+                        <i class="bi bi-plus-lg"></i>
+                    </div>
+
+                    <div class="text-start">
+                        <strong>Nova entrada</strong>
+                        <div class="small text-secondary">
+                            Registrar dinheiro recebido
+                        </div>
+                    </div>
+
+                </button>
+            </div>
+
+
+            <div class="col-lg-4">
+                <button
+                    type="button"
+                    class="quick-action w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalCaixa">
+
+                    <div class="quick-icon">
+                        <i class="bi bi-dash-lg"></i>
+                    </div>
+
+                    <div class="text-start">
+                        <strong>Nova saída</strong>
+                        <div class="small text-secondary">
+                            Registrar uma despesa
+                        </div>
+                    </div>
+
+                </button>
+            </div>
+
+
+            <div class="col-lg-4">
+                <a href="/movimentacoes" class="quick-action w-100">
+
+                    <div class="quick-icon">
+                        <i class="bi bi-list-ul"></i>
+                    </div>
+
+                    <div class="text-start">
+                        <strong>Movimentações</strong>
+                        <div class="small text-secondary">
+                            Ver histórico completo
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="section-card mb-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+                <div class="section-title">Últimas movimentações</div>
+                <small class="text-secondary">
+                    Movimentações recentes do caixa
+                </small>
+            </div>
+
+            <a href="/movimentacoes" class="btn btn-sm btn-outline-light">
+                Ver todas
+            </a>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table table-dark table-hover align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                        <th>Descrição</th>
+                        <th>Modalidade</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for movimentacao in movimentacoes %}
+
+                    <tr>
+
+                        <td>
+                            {% if movimentacao.tipo == "entrada" %}
+                                <span class="badge text-bg-success">
+                                    <i class="bi bi-arrow-down-left"></i>
+                                    Entrada
+                                </span>
+                            {% else %}
+                                <span class="badge text-bg-danger">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                    Saída
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <span class="category">
+                                {{ movimentacao.categoria }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="{{ 'entry' if movimentacao.tipo == 'entrada' else 'exit' }}">
+                                R$ {{ movimentacao.valor|moeda }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="text-secondary">
+                                {{ movimentacao.descricao or "Sem descrição" }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="category">
+                                {{ movimentacao.modalidade }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="text-secondary">
+                                {{ movimentacao.data.strftime("%d/%m/%Y %H:%M") }}
+                            </span>
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="6" class="text-center text-secondary py-5">
+                            <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                            Nenhuma movimentação registrada.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<div class="modal fade" id="modalCaixa" tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h5 class="modal-title">Movimentação de caixa</h5>
+                    <small class="text-secondary">
+                        Registre uma entrada ou saída.
+                    </small>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form method="POST" action="/caixa">
+
+                    <div class="mb-3">
+                        <label class="form-label">Tipo</label>
+
+                        <select name="tipo" class="form-select">
+                            <option value="entrada">Entrada</option>
+                            <option value="saida">Saída</option>
+                        </select>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Modalidade</label>
+
+                        <select name="modalidade" class="form-select">
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="misto">Misto</option>
+                        </select>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Valor</label>
+
+                        <input
+                            type="number"
+                            name="valor"
+                            step="0.01"
+                            min="0"
+                            class="form-control"
+                            placeholder="0,00"
+                            required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Categoria</label>
+
+                        <select
+                            name="categoria"
+                            class="form-select"
+                            required>
+
+                            <option value="patrocinio">Patrocínio</option>
+                            <option value="premiacao">Premiação</option>
+                            <option value="material">Material</option>
+                            <option value="inscricao">Taxa de inscrição</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="alimentacao">Alimentação</option>
+                            <option value="outros">Outros</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <label class="form-label">Descrição</label>
+
+                        <input
+                            type="text"
+                            name="descricao"
+                            class="form-control"
+                            placeholder="Ex: Patrocínio do comércio X">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Salvar movimentação
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+                    <i class="bi bi-dribbble"></i>
+                    CAIXA DRAGÕES
+                </div>
+
+                <p>
+                    Sistema de controle financeiro do time Dragões do Carimba.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="/">Início</a>
+                <a href="/movimentacoes">Movimentações</a>
+                <a href="/caixa/modalidade">Modalidades</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>© 2026 Vernix</span>
+            <span>Controle financeiro</span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
